@@ -4,12 +4,18 @@
       <img :src="userInfo.avatarUrl" alt="">
       <p>{{userInfo.nickName}}</p>
     </div>
-    <button class="btn">添加图书</button>
+    <YearProgress></YearProgress>  
+    <button @click="scanBook" class="btn">添加图书</button>
   </div>
 </template>
 
 <script>
+import YearProgress from '../../components/YearProgress'
+
 export default {
+  components: {
+    YearProgress
+  },
   data () {
     return {
       userInfo: {}
@@ -17,6 +23,21 @@ export default {
   },
 
   methods: {
+    addBooks (bookid) {
+      // 添加图书至MySQL
+      console.log(bookid)
+    },
+    scanBook () {
+      // 调用微信api扫码
+      wx.scanCode({
+        success: (res) => {
+          if (res.result) {
+            this.addBooks(res.result)
+          }
+        }
+      })
+    },
+
     getUserInfo () {
       // 调用登录接口
       wx.login({
@@ -45,7 +66,7 @@ export default {
   padding:150 30rpx;
 
 }  
-.userinfo{
+.userInfo{
   margin-top:150rpx;
   text-align:center;
 }
@@ -55,9 +76,7 @@ img{
   margin: 20rpx;
   border-radius: 50%;
 }
-.btn{
-  margin-top: 150rpx;
-}
+
 
 </style>
 

@@ -14,7 +14,7 @@ export default {
     pages: ['pages/logs/main', 'pages/index/main', 'pages/books/main', 'pages/comment/main', '^pages/me/main'],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#EA5149',
+      navigationBarBackgroundColor: '#48D1CC',
       navigationBarTitleText: 'VoyzBooks',
       navigationBarTextStyle: 'light'
     },
