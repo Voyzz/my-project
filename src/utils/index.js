@@ -38,7 +38,8 @@ export function showModal (title, content) {
 export function showSuccess (text) {
   wx.showModal({
     title: text,
-    icon: 'success'
+    icon: 'success',
+    showCancel: false
   })
 }
 

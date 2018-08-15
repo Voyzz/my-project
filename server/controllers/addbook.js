@@ -1,6 +1,6 @@
 
 const https = require('https')
-// const {mysql} = require('../qcloud')
+const {mysql} = require('../qcloud')
 
 // 新增图书
 // 1. 获取豆瓣信息
@@ -11,6 +11,18 @@ const https = require('https')
 module.exports = async (ctx) => {
   const { bookid } = ctx.request.body
   if (bookid) {
+    // 不插入重复图书
+    const findRes = await mysql('books').select().where('bookid',bookid)
+    if (findRes.length) {
+      ctx.state = {
+        code: -1,
+        data: {
+          msg: '图书已存在'
+        }
+      }
+      return
+    }
+
     let url = 'https://api.douban.com/v2/book/isbn/' + bookid
     // JSON信息存储在bookInfo变量 
     const bookInfo = await getJSON (url)
@@ -24,27 +36,27 @@ module.exports = async (ctx) => {
     const tags = bookInfo.tags.map (v => {
       return `${v.title} ${v.count}`
     }).join (',')
-    console.log({
-          bookid,rate,title, image, alt, publisher, summary ,price,tags,author
-        })
+    // console.log({
+    //       bookid,rate,title, image, alt, publisher, summary ,price,tags,author
+    //     })
 
     // 入库MySQL
-    // try {
-    //   await mysql ('books').insert ({
-    //     bookid,rate,title, image, alt, publisher, summary ,price,tags,author
-    //   })
-    //   ctx.state.data = {
-    //     title,
-    //     msg: 'success'
-    //   }
-    // }catch (e) {
-    //   ctx.state = {
-    //     code: -1,
-    //     data: {
-    //       msg: 'fail:' + e.sqlMessage
-    //     }
-    //   }
-    // }
+    try {
+      await mysql ('books').insert ({
+        bookid,rate,title, image, alt, publisher, summary ,price,tags,author
+      })
+      ctx.state.data = {
+        title,
+        msg: 'success'
+      }
+    }catch (e) {
+      ctx.state = {
+        code: -1,
+        data: {
+          msg: 'fail:' + e.sqlMessage
+        }
+      }
+    }
   }
 } 
 

@@ -12,7 +12,7 @@
 <script>
 import YearProgress from '../../components/YearProgress'
 import config from '@/utils/config'
-// import { showSuccess, post } from '@/utils/index'
+import { showModal } from '@/utils/index'
 
 export default {
   components: {
@@ -39,7 +39,12 @@ export default {
         },
         header: {},
         success: function (res) {
-          console.log(res.data)
+          // console.log(res)
+          if (res.data.code === 0) {
+            showModal('Wow!', `《${res.data.data.title}》添加成功`)
+          } else {
+            showModal('添加失败', '图书已存在')
+          }
         }
       })
     },
@@ -49,7 +54,7 @@ export default {
         success: (res) => {
           if (res.result) {
             this.addBooks(res.result)
-            console.log(res.result)
+            // console.log(res.result)
           }
         }
       })
