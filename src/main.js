@@ -34,7 +34,7 @@ export default {
           'selectedIconPath': 'static/img/todo-active.png'
         },
         {
-          'text': '我',
+          'text': '我的',
           'iconPath': 'static/img/me.png',
           'pagePath': 'pages/me/main',
           'selectedIconPath': 'static/img/me-active.png'

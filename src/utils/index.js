@@ -1,3 +1,47 @@
+import config from './config'
+// import { resolve } from 'url';
+
+// http get/post 工具
+export function get (url, data) {
+  return request(url, 'GET', data)
+}
+export function post (url, data) {
+  return request(url, 'POST', data)
+}
+
+function request (url, method, data, header = {}) {
+  return new Promise((resolve) => {
+    wx.request({
+      data,
+      method,
+      header,
+      url: config.host + url,
+      success: function (res) {
+        if (res.data.code === 0) {
+          resolve(res.data.code)
+        } else {
+          showModal('失败', res.data.data.msg)
+          // rejcet(res.data)
+        }
+      }
+    })
+  })
+}
+
+export function showModal (title, content) {
+  wx.showModal({
+    title,
+    content,
+    showCancel: false
+  })
+}
+export function showSuccess (text) {
+  wx.showModal({
+    title: text,
+    icon: 'success'
+  })
+}
+
 function formatNumber (n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`

@@ -1,7 +1,7 @@
 <template>
   <div class="progressbar">
     <progress :percent="percent" activeColor='#54FF9F' show-info='true'/>
-    <p>{{year}}年已经过去{{days}}天({{percent}}%)了</p>
+    <p>{{year}}年已经过去[{{days}}]天了</p>
   </div>
 </template>
 

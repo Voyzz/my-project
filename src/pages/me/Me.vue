@@ -11,6 +11,8 @@
 
 <script>
 import YearProgress from '../../components/YearProgress'
+import config from '@/utils/config'
+// import { showSuccess, post } from '@/utils/index'
 
 export default {
   components: {
@@ -25,7 +27,21 @@ export default {
   methods: {
     addBooks (bookid) {
       // 添加图书至MySQL
-      console.log(bookid)
+      // const res = await post('/weapp/addbook', bookid)
+      // if (res.code === 0 && res.data.title) {
+      //   showSuccess('add success', `${res.data.title}add success`)
+      // }
+      wx.request({
+        url: config.addBookUrl, // 仅为示例，并非真实的接口地址
+        method: 'POST',
+        data: {
+          bookid
+        },
+        header: {},
+        success: function (res) {
+          console.log(res.data)
+        }
+      })
     },
     scanBook () {
       // 调用微信api扫码
@@ -33,6 +49,7 @@ export default {
         success: (res) => {
           if (res.result) {
             this.addBooks(res.result)
+            console.log(res.result)
           }
         }
       })
