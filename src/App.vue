@@ -12,6 +12,21 @@ export default {
 </script>
 
 <style>
+.clearfix:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.left{
+  float: left;
+  font-size: 30rpx;
+}
+.right{
+  float: right;
+  font-size: 30rpx;
+}
 .btn{
   color: white;
   background: #48D1CC;

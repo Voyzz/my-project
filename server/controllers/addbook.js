@@ -36,9 +36,6 @@ module.exports = async (ctx) => {
     const tags = bookInfo.tags.map (v => {
       return `${v.title} ${v.count}`
     }).join (',')
-    // console.log({
-    //       bookid,rate,title, image, alt, publisher, summary ,price,tags,author
-    //     })
 
     // 入库MySQL
     try {

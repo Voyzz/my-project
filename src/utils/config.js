@@ -5,7 +5,8 @@ const config = {
   host,
   loginUrl: `${host}/weapp/login`,
   userYrl: `${host}/weapp/user`,
-  addBookUrl: `${host}/weapp/addbook`
+  addBookUrl: `${host}/weapp/addbook`,
+  bookListUrl: `${host}/weapp/booklist`
 }
 
 export default config

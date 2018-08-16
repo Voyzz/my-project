@@ -26,20 +26,16 @@ export default {
 
   methods: {
     addBooks (bookid) {
-      // 添加图书至MySQL
-      // const res = await post('/weapp/addbook', bookid)
-      // if (res.code === 0 && res.data.title) {
-      //   showSuccess('add success', `${res.data.title}add success`)
-      // }
+      // 发送GET请求给addbookUrl
       wx.request({
-        url: config.addBookUrl, // 仅为示例，并非真实的接口地址
+        url: config.addBookUrl,
         method: 'POST',
         data: {
           bookid
         },
         header: {},
+        // 获取数据存在res中
         success: function (res) {
-          // console.log(res)
           if (res.data.code === 0) {
             showModal('Wow!', `《${res.data.data.title}》添加成功`)
           } else {

@@ -9,6 +9,17 @@ export function post (url, data) {
   return request(url, 'POST', data)
 }
 
+// function request (url, method, data) {
+//   wx.request({
+//     url,
+//     data,
+//     header: {},
+//     success: function (res) {
+//       console.log(res.data)
+//     }
+//   })
+// }
+
 function request (url, method, data, header = {}) {
   return new Promise((resolve) => {
     wx.request({
