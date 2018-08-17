@@ -1,4 +1,5 @@
 <template>
+  <a :href="detailUrl">
   <!-- 整个card -->
   <div class="bookCard">
     <!-- 封面图片 -->
@@ -22,7 +23,7 @@
           {{book.author}}
         </div>
         <div class="right">
-          浏览量：
+          浏览量：{{book.count}}
         </div>
       </div>
       <!-- 第三行：添加人 出版社 -->
@@ -36,6 +37,7 @@
       </div>
     </div>
   </div>
+  </a>
 </template>
 
 <script>
@@ -45,7 +47,12 @@ export default {
   components: {
     rate
   },
-  props: ['book']
+  props: ['book'],
+  computed: {
+    detailUrl () {
+      return '/pages/detail/main?id=' + this.book.id
+    }
+  }
 }
 </script>
   
@@ -53,8 +60,8 @@ export default {
 
 .bookCard {
   border:0;
-  border-top:1rpx solid #cccccc;
-  border-bottom:1rpx solid #cccccc;
+  border-top:1rpx solid #eeeded;
+  border-bottom:1rpx solid #eeeded;
   padding: 10rpx;
   overflow: hidden;
   /* margin-top: 10rpx;

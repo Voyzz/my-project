@@ -12,6 +12,8 @@ export default {
 </script>
 
 <style>
+
+/* 清除浮动 */
 .clearfix:after{
   content: ".";
   display: block;
@@ -19,6 +21,21 @@ export default {
   clear: both;
   visibility: hidden;
 }
+
+/* 图片适配 */
+.zoomImage{
+    width:90%;
+    height:0;
+    padding-bottom: 180%;
+    overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+    /* border: solid 1px black; */
+}
+
 .pageNum{
   text-align: center;
   font-size: 30rpx;
@@ -48,6 +65,26 @@ export default {
 }
 .btn:active{
   background: #94dbea;
+}
+.text-footer{
+  text-align: center;
+  font-size: 12px;
+  margin-bottom:5px;
+}
+.text-primary{
+  color:#EA5149;
+}
+.page-title{
+  padding-left:20px;
+  background:#eee;
+  line-height: 40px;
+  font-size: 14px;
+}
+.right{
+  float: right;
+}
+.btn:active{
+  background: #FA5A49;
 }
 /* .container {
   height: 100%;
