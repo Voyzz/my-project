@@ -13,12 +13,20 @@ export default {
 
 <style>
 .clearfix:after{
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
+.pageNum{
+  text-align: center;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  color: rgb(170, 168, 168);
+}
+
 .left{
   float: left;
   font-size: 30rpx;
