@@ -1,39 +1,51 @@
 <template>
   <div class='bookinfo'>
+
+    <!-- 【封面部分】 -->
     <div class="thumb">
+      <!-- 背景图 -->
       <img class='back' 
         :src="bookDetail.image"
         mode='aspectFill'>
+      <!-- 封面图 -->
       <img class="img"  
             :src="bookDetail.image" 
-            mode='aspectFit'
-          >
+            mode='aspectFit'>
+      <!-- [图书信息] -->
       <div class="info">
+        <!-- 图书名 -->
         <div class="title">
           {{bookDetail.title}}
         </div>
+        <!-- 作者 -->
         <div class="author">
           {{bookDetail.author}}
         </div>
       </div>
     </div>
+
+    <!-- 【详细信息】 -->
     <div class="detail">
-      <div class="right text-primary">
+      <!-- 评分 -->
+      <div class="right" style="font-size:15px">
         {{bookDetail.rate}}分
         <Rate :value='bookDetail.rate'></Rate>
       </div>
     </div>
-    <div class="detail">
+    <!-- 出版社/价格 -->
+    <div style="margin-top:20rpx;padding:0px 15px 10px 15px;font-size:14px" class="myFont">
       {{bookDetail.publisher}}
-      <div class="right">
-        {{bookDetail.price}}
+      <div style="font-size:12px">
+        价格：{{bookDetail.price}}
       </div>
     </div>
-    <div class="tags">
-      <div class="badge" :key='tag' v-for='tag in bookDetail.tags'>{{tag}}</div>
+    <!-- 标签 -->
+    <div style="padding:0px 10px 0px 10px">
+      <div class="badge" :key='tag' v-for='tag in tags'>{{tag}}</div>
     </div>
-    <div class="summary">
-      <p :key='i' v-for='(sum,i) in bookDetail.summary'>{{sum}}</p>
+    <!-- 简述 -->
+    <div class="summary myFont">
+      <p style="font-size: 13px;padding:0px 10px 0px 10px">{{bookDetail.summary}}</p>
     </div>
   </div>
 </template>
@@ -49,13 +61,15 @@ export default {
   data () {
     return {
       bookid: '',
-      bookDetail: {}
+      bookDetail: {},
+      tags: []
     }
   },
   methods: {
     async getDetail () {
       // 发送GET请求，得到对应id的图书信息
       this.bookDetail = await get('/weapp/bookdetail', {id: this.bookid})
+      this.tags = this.bookDetail.tags.split(',')
       wx.setNavigationBarTitle({
         title: this.bookDetail.title
       })
@@ -69,7 +83,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .bookinfo{
   font-size: 14px;
 } 
@@ -78,8 +92,8 @@ export default {
   margin:5px;
   padding:5px;
   border-radius: 10px;
-  border:1px #EA5A49 solid;
-  color:#EA5A49;
+  border:1px #48D1CC solid;
+  color:#48D1CC;
 }
 .summary{
   padding:0 15px;
@@ -94,7 +108,7 @@ p{
   float: right;
 }
 .detail{
-  padding:5px 10px;
+  padding:20rpx 40rpx;
 }
 .avatar{
   width:20px;
@@ -127,6 +141,7 @@ p{
   left:0;
   top:330rpx;
   text-align: center;
+  margin-top: 40rpx;
 }
 .title{
   font-size:20px;

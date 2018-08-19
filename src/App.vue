@@ -86,6 +86,9 @@ export default {
 .btn:active{
   background: #FA5A49;
 }
+.myFont{
+  font-family:Arial,Helvetica,sans-serif;
+}
 /* .container {
   height: 100%;
   display: flex;
