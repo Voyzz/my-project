@@ -28,10 +28,10 @@
       </div>
       <!-- 第三行：添加人 出版社 -->
       <div class="row clearfix row3">
-        <div class="left">
-          {{book.nickname}}
+        <div class="right" style="font-size:25rpx">
+          添加人：{{book.nickname}}
         </div>
-        <div class="right">
+        <div class="left">
           {{book.publisher}}
         </div>
       </div>

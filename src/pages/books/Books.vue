@@ -2,7 +2,7 @@
   <div>
     <!-- 将books中的数据传递给card组件 -->
     <topBooks :topBooks='topBooks'></topBooks>
-    <card :key="book.id" v-for="book in books" :book=book></card>
+    <card :key="book.id" v-for="book in books" :book=book slot="card"></card>
     <p class="pageNum" v-if="!more">没有更多图书啦</p>
   </div>
 </template>
