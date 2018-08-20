@@ -19,19 +19,19 @@
       </div>
       <!-- 第二行：作者 浏览量 -->
       <div class="row clearfix row2">
-        <div class="left">
+        <div class="left" style="font-size:25rpx">
           {{book.author}}
         </div>
-        <div class="right">
+        <div class="right" style="font-size:25rpx">
           浏览量：{{book.count}}
         </div>
       </div>
       <!-- 第三行：添加人 出版社 -->
       <div class="row clearfix row3">
-        <div class="right" style="font-size:25rpx">
+        <!-- <div class="right" style="font-size:25rpx">
           添加人：{{book.nickname}}
-        </div>
-        <div class="left">
+        </div> -->
+        <div class="left" style="font-size:25rpx">
           {{book.publisher}}
         </div>
       </div>
@@ -62,7 +62,8 @@ export default {
   border:0;
   border-top:1rpx solid #eeeded;
   border-bottom:1rpx solid #eeeded;
-  padding: 10rpx;
+  padding-right: 20rpx;
+  padding-top: 10rpx;
   overflow: hidden;
   /* margin-top: 10rpx;
   margin-bottom: 10rpx; */

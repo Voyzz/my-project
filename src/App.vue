@@ -72,7 +72,7 @@ export default {
   margin-bottom:5px;
 }
 .text-primary{
-  color:#EA5149;
+  color:#94dbea;
 }
 .page-title{
   padding-left:20px;
