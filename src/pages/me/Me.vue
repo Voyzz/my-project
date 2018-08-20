@@ -1,11 +1,19 @@
 <template>
   <div class="container"> 
-    <div class="userInfo">
-      <img :src="userInfo.avatarUrl" alt="">
-      <p>{{userInfo.nickName}}</p>
+    <div class="userImg">
+      <open-data type="userAvatarUrl"></open-data>
     </div>
-    <YearProgress></YearProgress>  
-    <button @click="scanBook" class="btn">添加图书</button>
+    <div class="other">
+      <div class="userInfo">
+        <open-data type="userNickName" lang="zh_CN"></open-data>
+      </div>
+      <!-- <img :src="userInfo.avatarUrl" alt=""> -->
+      <!-- <p>{{userInfo.nickName}}</p> -->
+      <div class="bottom">
+        <YearProgress></YearProgress>  
+        <button @click="scanBook" class="btn">添加图书</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -54,25 +62,27 @@ export default {
           }
         }
       })
-    },
-
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
     }
+
+    // ,
+    // getUserInfo () {
+    //   // 调用登录接口
+    //   wx.login({
+    //     success: () => {
+    //       wx.getUserInfo({
+    //         success: (res) => {
+    //           this.userInfo = res.userInfo
+    //           console.log(res)
+    //         }
+    //       })
+    //     }
+    //   })
+    // }
   },
 
   created () {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+    // this.getUserInfo()
   }
 
 }
@@ -82,19 +92,25 @@ export default {
 <style>
 .container{
   padding:150 30rpx;
-
 }  
 .userInfo{
   margin-top:150rpx;
   text-align:center;
 }
-img{
+.userImg{
+  position: absolute;
+  top: 15%;
+  left: 280rpx;
   width: 150rpx;
   height:150rpx;
   margin: 20rpx;
   border-radius: 50%;
+  overflow: hidden;
 }
-
-
+.other{
+  position: absolute;
+  top: 20%;
+  left: 64rpx;
+}
 </style>
 

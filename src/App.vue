@@ -56,12 +56,12 @@ export default {
   color: white;
   background: #48D1CC;
   /* margin-left: 20px; */
-  margin-top: 20rpx;
+  margin-top: 150rpx;
   border-radius: 8rpx;
   font-size: 32rpx;
   line-height: 80rpx;
   height: 80rpx;
-  width: 60%;
+  width: 50%;
 }
 .btn:active{
   background: #94dbea;
@@ -88,6 +88,14 @@ export default {
 }
 .myFont{
   font-family:Arial,Helvetica,sans-serif;
+}
+.center {
+        position: absolute;
+        left: 50%;
+        -ms-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%); 
 }
 /* .container {
   height: 100%;

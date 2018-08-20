@@ -13,16 +13,17 @@
       <span>[作者/{{author}}]</span>
     </div>
     <!-- 图片 -->
-    <div class="oneImg">
-      <img :src="imgUrl" mode="aspectFit">
-    </div>
+
+    <img :src="imgUrl" mode="scaleToFill" class="oneImg">
+
     <!-- 一句话 -->
     <div class="word">
       <span>{{word}}</span>
     </div>
     <!-- 来源 -->
     <div class="from">
-      <span>---{{from}}</span>
+      <span>---{{from}}</span><br>
+      <span style="float:right;padding-right:22rpx;padding-top:60rpx;font-size:25rpx">{{date}}</span>
     </div>
   </div>
 </template>
@@ -37,7 +38,7 @@ export default {
       vol: '',
       word: '',
       from: '',
-      data: '',
+      date: '',
       author: ''
     }
   },
@@ -65,14 +66,14 @@ export default {
     async getOne () {
       const oneInfo = await this.wxPost()
       const resourse = oneInfo.data.Body
-      // console.log(resourse)
+      // console.log(resourse.date.split(' ')[0])
       // 获取具体信息
       this.imgUrl = resourse.img_url
       this.kind = resourse.img_kind
       this.vol = resourse.vol
       this.word = resourse.word
       this.from = resourse.word_from
-      this.data = resourse.data
+      this.date = resourse.date.split(' ')[0]
       this.author = resourse.img_author
     }
   },
@@ -92,21 +93,27 @@ export default {
   font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
 }
 .vol {
-  margin: 10rpx 30rpx 0px 20rpx;
+  margin: 10rpx 30rpx 0px 30rpx;
   float: left;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 32rpx;
-  color: rgb(92, 92, 92);
+  color: rgb(138, 136, 136);
 }
 .author {
   margin-top: 30rpx;
   margin-right: 30rpx;
+  margin-bottom: 40rpx;
   float: right;
   font-size: 25rpx;
   color: rgb(92, 92, 92);
 }
+.oneImg {
+  width: 720rpx;
+  height: 540rpx;
+  padding-left: 15rpx;
+}
 .word {
-  margin: 0px 30rpx 0px 45rpx;
+  margin: 30rpx 30rpx 0px 45rpx;
   font-size: 33rpx;
   font-family: “Arial”,”Microsoft YaHei”,”黑体”,”宋体”,sans-serif;
   color: rgb(92, 92, 92);
@@ -118,4 +125,8 @@ export default {
   font-size: 30rpx;
   color: rgb(92, 92, 92);
 }
+/* .date {
+  text-align: center;
+  color: rgb(92, 92, 92);
+} */
 </style>

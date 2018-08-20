@@ -1,7 +1,7 @@
 <template>
   <div class="progressbar">
-    <progress :percent="percent" activeColor='#54FF9F' show-info='true'/>
-    <p>{{year}}年已经过去[{{days}}]天了</p>
+    <progress :percent="percent" activeColor='#54FF9F' active='true' stroke-width='8'/>
+    <div class="word">↬  {{year}}年已经过去 {{percent}}% 了  ↫</div>
   </div>
 </template>
 
@@ -42,9 +42,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .progressbar{
-    margin: 80rpx;
-    text-align: center;
+  margin: 100rpx;
+  text-align: center;
+}
+.word{
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color: rgb(105, 104, 104)
 }
 </style>

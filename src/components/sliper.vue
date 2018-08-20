@@ -8,7 +8,7 @@
                       :style="deleteSlider"
                    >
                 <!-- 插槽中放具体项目中需要内容         -->   
-                    <slot name="card">
+                    <slot>
                     </slot>
                    </div>
                    <div class="remove" ref='remove'>
