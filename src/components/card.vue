@@ -22,15 +22,18 @@
         <div class="left" style="font-size:25rpx">
           {{book.author}}
         </div>
-        <div class="right" style="font-size:25rpx">
+        <!-- <div class="right" style="font-size:25rpx">
           浏览量：{{book.count}}
-        </div>
+        </div> -->
       </div>
       <!-- 第三行：添加人 出版社 -->
       <div class="row clearfix row3">
         <!-- <div class="right" style="font-size:25rpx">
           添加人：{{book.nickname}}
         </div> -->
+        <div class="right" style="font-size:25rpx">
+          浏览量：{{book.count}}
+        </div>
         <div class="left" style="font-size:25rpx">
           {{book.publisher}}
         </div>
