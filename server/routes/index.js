@@ -40,6 +40,8 @@ router.get('/booklist', controllers.booklist)
 
 router.get('/bookdetail', controllers.bookdetail)
 
+router.get('/target', controllers.target)
+
 
 
 module.exports = router

@@ -1,34 +1,45 @@
 <template>
-  <div class="container"> 
-    <div class="userImg">
-      <open-data type="userAvatarUrl"></open-data>
+  <div>
+    <div class="container" v-show="false">
+      <!-- 用户头像  -->
+      <div class="userImg">
+        <open-data type="userAvatarUrl"></open-data>
+      </div>
+      <div class="other">
+        <!-- 用户名 -->
+        <div class="userInfo">
+          <open-data type="userNickName" lang="zh_CN"></open-data>
+        </div>
+        <div class="bottom">
+          <!-- 读了多少 -->
+          <YearProgress :v-show="appear"></YearProgress>
+          <!-- 添加按钮 -->
+          <button @click="scanBook" class="btn">添加图书</button>
+        </div>
+      </div>
     </div>
-    <div class="other">
-      <div class="userInfo">
-        <open-data type="userNickName" lang="zh_CN"></open-data>
-      </div>
-      <!-- <img :src="userInfo.avatarUrl" alt=""> -->
-      <!-- <p>{{userInfo.nickName}}</p> -->
-      <div class="bottom">
-        <YearProgress></YearProgress>  
-        <button @click="scanBook" class="btn">添加图书</button>
-      </div>
+    <!-- 输入组件 -->
+    <div v-show="true">
+      <bookTarget ></bookTarget>  
     </div>
   </div>
 </template>
 
 <script>
 import YearProgress from '../../components/YearProgress'
+import bookTarget from '../../components/bookTarget'
 import config from '@/utils/config'
 import { showModal } from '@/utils/index'
 
 export default {
   components: {
-    YearProgress
+    YearProgress,
+    bookTarget
   },
   data () {
     return {
-      userInfo: {}
+      userInfo: {},
+      appear: false
     }
   },
 
@@ -63,26 +74,10 @@ export default {
         }
       })
     }
-
-    // ,
-    // getUserInfo () {
-    //   // 调用登录接口
-    //   wx.login({
-    //     success: () => {
-    //       wx.getUserInfo({
-    //         success: (res) => {
-    //           this.userInfo = res.userInfo
-    //           console.log(res)
-    //         }
-    //       })
-    //     }
-    //   })
-    // }
   },
 
   created () {
-    // 调用应用实例的方法获取全局数据
-    // this.getUserInfo()
+
   }
 
 }
