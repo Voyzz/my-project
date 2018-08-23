@@ -7,12 +7,7 @@
 
 <script>
 export default {
-  props: ['bookTarget'],
-  data () {
-    return {
-      bookFinished: 2
-    }
-  },
+  props: ['bookTarget', 'bookFinished'],
   computed: {
     percent () {
       return (this.bookFinished * 100 / this.bookTarget).toFixed(0)

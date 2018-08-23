@@ -13,7 +13,7 @@
         <div class="bottom">
           <!-- 读了多少 -->
           <!-- <YearProgress :v-show="appear"></YearProgress> -->
-          <completed :v-show="appear" :bookTarget="targetVal"></completed>
+          <completed :v-show="appear" :bookTarget="targetVal" :bookFinished="finishedBooks"></completed>
           <!-- 添加按钮 -->
           <button @click="scanBook" class="btn">添加图书</button>
         </div>
@@ -32,6 +32,7 @@ import completed from '../../components/completed'
 import bookTarget from '../../components/bookTarget'
 import config from '@/utils/config'
 import { showModal } from '@/utils/index'
+import { get } from '@/utils/utils'
 
 export default {
   components: {
@@ -43,17 +44,24 @@ export default {
     return {
       userInfo: {},
       appear: false,
-      targetVal: -1
+      targetVal: -1,
+      finishedBooks: 0
     }
   },
 
   methods: {
+    // 获取已读书数量
+    async getBooksCount () {
+      const finishedBooks = await get('/weapp/target', {})
+      this.finishedBooks = finishedBooks.finishedBooks.length
+    },
     // 从子组件传来目标值
     changeToMe: function (val) {
       this.targetVal = val
       // 若已传值，切换组件显示
       if (val) {
         this.appear = true
+        this.getBooksCount()
       }
     },
     addBooks (bookid) {
@@ -89,9 +97,7 @@ export default {
   },
 
   created () {
-    if (this.targetVal !== -1) {
-      this.appear = true
-    }
+
   }
 
 }

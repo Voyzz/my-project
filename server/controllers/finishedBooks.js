@@ -10,13 +10,10 @@ module.exports = async (ctx) => {
     const nickName = await mysql('cSessionInfo').select('user_info')
     // 按照评分排名获取图书信息
     const topBooks = await mysql('books').select('*').limit(9).orderBy('rate','desc')
-    // 获取长度
-    const finishedBook = await mysql('books').select('*')
     // 将获取的数据传递给给自己发送请求的client
     ctx.state.data = {
         list: books,
         nickname: nickName,
-        topBooks: topBooks,
-        finishedBook: finishedBook
-    } 
+        topBooks: topBooks
+    }
 } 
