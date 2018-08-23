@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container" v-show="false">
+    <div class="container" v-show="appear">
       <!-- 用户头像  -->
       <div class="userImg">
         <open-data type="userAvatarUrl"></open-data>
@@ -12,38 +12,50 @@
         </div>
         <div class="bottom">
           <!-- 读了多少 -->
-          <YearProgress :v-show="appear"></YearProgress>
+          <!-- <YearProgress :v-show="appear"></YearProgress> -->
+          <completed :v-show="appear" :bookTarget="targetVal"></completed>
           <!-- 添加按钮 -->
           <button @click="scanBook" class="btn">添加图书</button>
         </div>
       </div>
     </div>
     <!-- 输入组件 -->
-    <div v-show="true">
-      <bookTarget ></bookTarget>  
+    <div v-show="!appear">
+      <bookTarget @childByValue="changeToMe"></bookTarget>  
     </div>
   </div>
 </template>
 
 <script>
-import YearProgress from '../../components/YearProgress'
+// import YearProgress from '../../components/YearProgress'
+import completed from '../../components/completed'
 import bookTarget from '../../components/bookTarget'
 import config from '@/utils/config'
 import { showModal } from '@/utils/index'
 
 export default {
   components: {
-    YearProgress,
+    // YearProgress,
+    completed,
     bookTarget
   },
   data () {
     return {
       userInfo: {},
-      appear: false
+      appear: false,
+      targetVal: -1
     }
   },
 
   methods: {
+    // 从子组件传来目标值
+    changeToMe: function (val) {
+      this.targetVal = val
+      // 若已传值，切换组件显示
+      if (val) {
+        this.appear = true
+      }
+    },
     addBooks (bookid) {
       // 发送GET请求给addbookUrl
       wx.request({
@@ -77,7 +89,9 @@ export default {
   },
 
   created () {
-
+    if (this.targetVal !== -1) {
+      this.appear = true
+    }
   }
 
 }
@@ -103,9 +117,11 @@ export default {
   overflow: hidden;
 }
 .other{
+  width: 500rpx;
   position: absolute;
   top: 20%;
-  left: 64rpx;
+  left: 125rpx;
 }
+
 </style>
 

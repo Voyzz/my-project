@@ -5,11 +5,11 @@ module.exports = async (ctx) => {
   const { target } = ctx.request.query
   // target值录入数据库
   try {
-    await mysql ('cSessionInfo').insert ({
-        target
+    await mysql ('books').insert ({
+        "rate": target
     })
     ctx.state.data = {
-      title,
+      target,
       msg: 'success'
     }
   }catch (e) {

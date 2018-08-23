@@ -4,15 +4,15 @@
       <open-data type="userAvatarUrl"></open-data>
     </div>
     <div class="in">
-      <p class="word">↬  请输入你今年的读书目标  ↫</p>
-      <input 
-        class="val center"
-        type="number" 
-        placeholder=" "
-        placeholder-style="text-align:center"
-        v-model="val"/>
+      <p class="word">↬  设置你今年的读书目标  ↫</p>
+       <slider @change="sliderChange" 
+              min="0" 
+              max="100" 
+              block-size="20"
+              block-color="#48D1CC"
+              show-value/>
     </div>
-    <button @click="getTareget" class="btn" style="margin-top:300rpx;width:250rpx">确认</button>
+    <button @click="toMeClick" class="btn" style="margin-top:250rpx;width:250rpx">确认</button>
   </div>
 </template>
 
@@ -26,20 +26,12 @@ export default {
     }
   },
   methods: {
-    async getTareget () {
-      await wx.request({
-        url: 'https://3yuexwft.qcloud.la/weapp/target',
-        method: 'GET',
-        data: {
-          target: this.val
-        },
-        header: {},
-        // 获取数据存在res中
-        success: function (res) {
-          // console.log(res)
-        }
-      })
-      // console.log(tar)
+    toMeClick () {
+      // console.log(this.val)
+      this.$emit('childByValue', this.val)
+    },
+    sliderChange: function (e) {
+      this.val = e.target.value
     }
   },
   created () {
@@ -67,6 +59,7 @@ export default {
   color: rgb(91, 90, 90);
   text-align: center;
   font-size: 35rpx;
+  margin-bottom: 30rpx;
 }
 .in{
   width: 500rpx;
