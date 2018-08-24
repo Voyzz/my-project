@@ -7,7 +7,7 @@
       <p class="word">↬  设置你今年的读书目标  ↫</p>
        <slider @change="sliderChange" 
               min="0" 
-              max="100" 
+              max="50" 
               block-size="20"
               block-color="#48D1CC"
               show-value/>

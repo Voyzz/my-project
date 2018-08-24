@@ -17,6 +17,6 @@ module.exports = async (ctx) => {
         list: books,
         nickname: nickName,
         topBooks: topBooks,
-        finishedBook: finishedBook
+        finished: finishedBook
     } 
 } 

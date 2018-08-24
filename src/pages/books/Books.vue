@@ -36,7 +36,6 @@ export default {
       wx.showNavigationBarLoading()
       // 发送GET请求，获取server中"ctx.state.data"中的数据
       const books = await get('/weapp/booklist', {page: this.page})
-      console.log(books)
       // 是否显示“没有更多图书”
       if (books.list.length < 10 && this.page > 0) {
         this.more = false

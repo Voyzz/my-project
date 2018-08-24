@@ -1,9 +1,9 @@
 // 配置项
 // 本地服务器
-const host = 'http://localhost:5757'
+// const host = 'http://localhost:5757'
 
 // 开发环境
-// const host = 'https://3yuexwft.qcloud.la'
+const host = 'https://3yuexwft.qcloud.la'
 
 // 生产环境
 // const host = 'https://116389465.voyz.xyz'

@@ -13,7 +13,7 @@
         <div class="bottom">
           <!-- 读了多少 -->
           <!-- <YearProgress :v-show="appear"></YearProgress> -->
-          <completed :v-show="appear" :bookTarget="targetVal" :bookFinished="finishedBooks"></completed>
+          <completed :v-show="appear" :bookTarget="targetVal" :bookFinished="finishedBook"></completed>
           <!-- 添加按钮 -->
           <button @click="scanBook" class="btn">添加图书</button>
         </div>
@@ -45,28 +45,29 @@ export default {
       userInfo: {},
       appear: false,
       targetVal: -1,
-      finishedBooks: 0
+      finishedBook: 0
     }
   },
 
   methods: {
     // 获取已读书数量
     async getBooksCount () {
-      const finishedBooks = await get('/weapp/target', {})
-      this.finishedBooks = finishedBooks.finishedBooks.length
+      const finishedBook = await get('/weapp/target', {})
+      this.finishedBook = finishedBook.finishedBook.length
+      // console.log(111)
     },
     // 从子组件传来目标值
     changeToMe: function (val) {
       this.targetVal = val
+      this.getBooksCount()
       // 若已传值，切换组件显示
       if (val) {
         this.appear = true
-        this.getBooksCount()
       }
     },
-    addBooks (bookid) {
+    async addBooks (bookid) {
       // 发送GET请求给addbookUrl
-      wx.request({
+      await wx.request({
         url: config.addBookUrl,
         method: 'POST',
         data: {
@@ -83,9 +84,9 @@ export default {
         }
       })
     },
-    scanBook () {
+    async scanBook () {
       // 调用微信api扫码
-      wx.scanCode({
+      await wx.scanCode({
         success: (res) => {
           if (res.result) {
             this.addBooks(res.result)
@@ -96,8 +97,8 @@ export default {
     }
   },
 
-  created () {
-
+  mounted () {
+    // this.getBooksCount()
   }
 
 }
