@@ -12,40 +12,41 @@
         </div>
         <div class="bottom">
           <!-- 读了多少 -->
-          <!-- <YearProgress :v-show="appear"></YearProgress> -->
-          <completed :v-show="appear" :bookTarget="targetVal" :bookFinished="finishedBook"></completed>
+          <YearProgress :v-show="appear"></YearProgress>
+          <!-- <completed :v-show="appear" :bookTarget="targetVal" :bookFinished="finishedBook"></completed> -->
           <!-- 添加按钮 -->
           <button @click="scanBook" class="btn">添加图书</button>
         </div>
       </div>
     </div>
     <!-- 输入组件 -->
-    <div v-show="!appear">
+    <!-- <div v-show="!appear">
       <bookTarget @childByValue="changeToMe"></bookTarget>  
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-// import YearProgress from '../../components/YearProgress'
+import YearProgress from '../../components/YearProgress'
 import completed from '../../components/completed'
-import bookTarget from '../../components/bookTarget'
+// import bookTarget from '../../components/bookTarget'
 import config from '@/utils/config'
 import { showModal } from '@/utils/index'
 import { get } from '@/utils/utils'
 
 export default {
   components: {
-    // YearProgress,
-    completed,
-    bookTarget
+    YearProgress,
+    completed
+    // bookTarget
   },
   data () {
     return {
       userInfo: {},
-      appear: false,
-      targetVal: -1,
-      finishedBook: 0
+      appear: true
+      // appear: false,
+      // targetVal: -1,
+      // finishedBook: 0
     }
   },
 
